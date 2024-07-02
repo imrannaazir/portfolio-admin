@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Circle, Settings } from "lucide-react";
+import { Circle } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   Accordion,
@@ -82,19 +82,6 @@ export default function MainNav({
       <div className="h-full w-full flex flex-col justify-between px-2 pt-10 pb-6">
         {/* top */}
         <div className="flex-grow ">{sidebarNavRoute}</div>
-
-        {/* end */}
-        <NavLink
-          className={cn(
-            "flex items-center font-semibold  gap-2 py-2 px-2  rounded-md w-[235px]",
-            pathname === "/settings" ? "bg-background" : ""
-          )}
-          to={"/settings"}
-          key={"/settings"}
-        >
-          <Settings className="mr-2 h-4 w-4" />
-          <span>Settings</span>
-        </NavLink>
       </div>
     </nav>
   );

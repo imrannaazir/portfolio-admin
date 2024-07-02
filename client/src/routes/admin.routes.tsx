@@ -4,6 +4,7 @@ import { Award, BookOpen, Briefcase, Home, Layers } from "lucide-react";
 import { TPath } from "@/types";
 import AddProjectPage from "@/pages/AddProject";
 import ProjectListPage from "@/pages/ProjectList";
+import AddExperiencePage from "@/pages/AddExperiencePage";
 
 const paths: TPath[] = [
   {
@@ -35,7 +36,6 @@ const paths: TPath[] = [
       },
     ],
   },
-  /* 
   {
     icon: <Briefcase className="mr-2 h-4 w-4" />,
     label: "Experiences",
@@ -44,16 +44,17 @@ const paths: TPath[] = [
       {
         path: `new`,
         label: "Add",
-        element: <AddProduct />,
+        element: <AddExperiencePage />,
       },
       {
         path: `list`,
         label: "List",
-        element: <ProductList />,
+        element: <AddProjectPage />,
       },
     ],
   },
-  {
+  /* 
+          {
     icon: <BookOpen className="mr-2 h-4 w-4" />,
     label: "Blogs",
     path: "blogs",
