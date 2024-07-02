@@ -1,9 +1,9 @@
-import AddProduct from "@/pages/AddProduct";
 import HomePage from "@/pages/Home";
-import ProductList from "@/pages/ProductList";
 // import UpdateProduct from "@/pages/UpdateProduct";
 import { Award, BookOpen, Briefcase, Home, Layers } from "lucide-react";
 import { TPath } from "@/types";
+import AddProjectPage from "@/pages/AddProject";
+import ProjectListPage from "@/pages/ProjectList";
 
 const paths: TPath[] = [
   {
@@ -26,12 +26,12 @@ const paths: TPath[] = [
       {
         path: `new`,
         label: "Add",
-        element: <AddProduct />,
+        element: <AddProjectPage />,
       },
       {
         path: `list`,
         label: "List",
-        element: <AddProduct />,
+        element: <ProjectListPage />,
       },
     ],
   },

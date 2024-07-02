@@ -1,4 +1,4 @@
-import { TTag } from "@/types/product.type";
+import { TTag } from "@/types/project.type";
 import baseApi from "../api/baseApi";
 import { TResponseRedux } from "@/types";
 

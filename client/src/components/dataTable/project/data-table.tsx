@@ -6,68 +6,34 @@ import {
 } from "@tanstack/react-table";
 
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { useState } from "react";
 import TableSkeleton from "@/components/ui/table-skeleton";
-import ProductDataTableToolbar from "../data-table-toolbar";
 import DataTableHeader from "../data-table-header";
-import { useAppDispatch } from "@/redux/hooks";
 import { DataTablePagination } from "../data-table-pagination";
-import { setIsLoading } from "@/redux/features/modal/alertModal.slice";
 
-interface ProductDataTableProps<TData, TValue> {
+interface ProjectDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   isLoading: boolean;
 }
 
-export function ProductDataTable<TData, TValue>({
+export function ProjectDataTable<TData, TValue>({
   columns,
   data,
   isLoading,
-}: ProductDataTableProps<TData, TValue>) {
-  const dispatch = useAppDispatch();
-  const [rowSelection, setRowSelection] = useState({});
-
+}: ProjectDataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    onRowSelectionChange: setRowSelection,
-    state: {
-      rowSelection,
-    },
   });
-
-  // delete category
-  const onDelete = async (ids: string[]) => {
-    dispatch(setIsLoading(true));
-
-    console.log(ids);
-  };
-
-  const sortByItems = [
-    {
-      value: "title",
-      label: "Collection title",
-    },
-    {
-      value: "updatedAt",
-      label: "Updated",
-    },
-    {
-      value: "noOfProducts",
-      label: "Products Number",
-    },
-  ];
 
   return (
     <div className="space-y-4">
-      <ProductDataTableToolbar sortByItems={sortByItems} />
       <div className="rounded-md border">
         <Table>
-          <DataTableHeader table={table} fn={onDelete} />
+          <DataTableHeader table={table} fn={() => {}} />
           {isLoading ? (
-            <TableSkeleton columnNo={9} rowNo={10} />
+            <TableSkeleton columnNo={6} rowNo={10} />
           ) : (
             <TableBody>
               {table.getRowModel().rows?.length ? (

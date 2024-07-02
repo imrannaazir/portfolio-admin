@@ -45,8 +45,6 @@ const AddProjectPage = () => {
 
   // on submit handler
   const onSubmit = async (data: TProjectFormValues) => {
-    console.log({ data });
-
     const toastId = toast.loading("Creating.", { duration: 2000 });
     try {
       const response = await createProject(data).unwrap();

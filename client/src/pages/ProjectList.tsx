@@ -1,4 +1,4 @@
-import { columns } from "@/components/dataTable/product/columns";
+import { columns } from "@/components/dataTable/project/columns";
 import Page from "@/components/layout/Page";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,10 +14,10 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import queryString from "query-string";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetAllProductQuery } from "@/redux/features/project/projectApi";
-import { ProductDataTable } from "@/components/dataTable/product/data-table";
+import { ProjectDataTable } from "@/components/dataTable/project/data-table";
+import { useGetAllProjectsQuery } from "@/redux/features/project/projectApi";
 
-const ProductListPage = () => {
+const ProjectListPage = () => {
   // invoke hooks
 
   const [skip, setSkip] = useState(true);
@@ -37,7 +37,7 @@ const ProductListPage = () => {
     searchTerm,
   });
 
-  const { data, isFetching } = useGetAllProductQuery(query, { skip });
+  const { data, isFetching } = useGetAllProjectsQuery(query, { skip });
 
   useEffect(() => {
     setSkip(false);
@@ -46,14 +46,14 @@ const ProductListPage = () => {
   useEffect(() => {
     dispatch(setMeta(data?.meta));
   }, [data?.meta, dispatch]);
-  const products = data?.data || [];
+  const projects = data?.data || [];
 
   return (
-    <Page title="Products" action={<ProductAction />}>
+    <Page title="Projects" action={<ProjectAction />}>
       <div className=" mx-auto">
-        <ProductDataTable
+        <ProjectDataTable
           columns={columns}
-          data={products}
+          data={projects}
           isLoading={isFetching}
         />
       </div>
@@ -61,12 +61,12 @@ const ProductListPage = () => {
   );
 };
 
-const ProductAction = () => {
+const ProjectAction = () => {
   return (
-    <Link to="/products/new">
-      <Button size={"sm"}>Add product</Button>;
+    <Link to="/projects/new">
+      <Button size={"sm"}>Add Project</Button>;
     </Link>
   );
 };
 
-export default ProductListPage;
+export default ProjectListPage;

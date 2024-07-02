@@ -14,8 +14,9 @@ export const projectApi = baseApi.injectEndpoints({
 
     // get all project
     getAllProjects: builder.query({
-      query: (query) => ({
-        url: `/projects?${query}`,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      query: (_query) => ({
+        url: `/projects`,
         method: "GET",
       }),
       providesTags: ["Projects"],
@@ -24,7 +25,7 @@ export const projectApi = baseApi.injectEndpoints({
     // delete project by Id
     deleteProjectById: builder.mutation({
       query: (projectId) => ({
-        url: `/products/${projectId}`,
+        url: `/projects/${projectId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Projects", "Project"],
@@ -33,7 +34,7 @@ export const projectApi = baseApi.injectEndpoints({
     // get project by Id
     getProjectById: builder.query({
       query: (projectId) => ({
-        url: `/products/${projectId}`,
+        url: `/projects/${projectId}`,
         method: "GET",
       }),
       providesTags: ["Project"],

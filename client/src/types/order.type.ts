@@ -1,4 +1,4 @@
-import { TProduct } from "./product.type";
+import { TProduct } from "./project.type";
 
 export type TOrder = {
   _id?: string;

@@ -1,4 +1,3 @@
-import { BiEdit } from "react-icons/bi";
 import { IoTrashOutline } from "react-icons/io5";
 
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,6 @@ import {
 import { FaEllipsis } from "react-icons/fa6";
 import { Row } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/redux/hooks";
 import {
   setIsLoading,
@@ -20,20 +18,19 @@ import {
   setOnConfirm,
 } from "@/redux/features/modal/alertModal.slice";
 import { toast } from "sonner";
-import { TProduct } from "@/types/product.type";
+import { TProject } from "@/types/project.type";
 import { useDeleteProjectByIdMutation } from "@/redux/features/project/projectApi";
 
-const CategoryDataTableAction = ({ row }: { row: Row<TProduct> }) => {
-  const [deleteSingleProduct] = useDeleteProjectByIdMutation();
-  const productId = row.original._id;
+const ProjectDataTableAction = ({ row }: { row: Row<TProject> }) => {
+  const [deleteSingleProject] = useDeleteProjectByIdMutation();
+  const projectId = row.original._id;
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   // on confirm
   const onConfirm = async () => {
     dispatch(setIsLoading(true));
     try {
-      const res = await deleteSingleProduct(productId).unwrap();
+      const res = await deleteSingleProject(projectId).unwrap();
       if (res.success) {
         toast.success("Deleted successfully.", { duration: 2000 });
         dispatch(setIsOpen(false));
@@ -46,10 +43,6 @@ const CategoryDataTableAction = ({ row }: { row: Row<TProduct> }) => {
       dispatch(setIsLoading(false));
     }
   };
-  // on update
-  const onUpdate = () => {
-    navigate(`/products/${productId}`);
-  };
 
   // on delete
   const onDelete = () => {
@@ -57,11 +50,6 @@ const CategoryDataTableAction = ({ row }: { row: Row<TProduct> }) => {
     dispatch(setIsOpen(true));
   };
   const collectionActions = [
-    {
-      title: "Edit Product",
-      icon: <BiEdit className="mr-2 h-4 w-4" />,
-      fn: onUpdate,
-    },
     {
       title: "Delete Product",
       icon: <IoTrashOutline className="mr-2 h-4 w-4" />,
@@ -94,4 +82,4 @@ const CategoryDataTableAction = ({ row }: { row: Row<TProduct> }) => {
   );
 };
 
-export default CategoryDataTableAction;
+export default ProjectDataTableAction;
