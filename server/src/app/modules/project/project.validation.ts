@@ -7,7 +7,8 @@ export const createProjectValidationSchema = z.object({
     description: z.string().optional(),
     technologies: z
       .array(z.string())
-      .min(1, 'At least one technology is required'),
+      .min(1, 'At least one technology is required')
+      .optional(),
     liveLink: z.string().url('Must be a valid URL'),
     clientGitHub: z.string().url('Must be a valid URL').optional(),
     backendGitHub: z.string().url('Must be a valid URL').optional(),

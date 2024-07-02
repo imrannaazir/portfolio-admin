@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { format } from "date-fns";
 
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -17,46 +18,42 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import UploadSingleImage from "@/components/ui/image-upload";
 import PageSection from "@/components/ui/page-section";
-import { useCreateProductMutation } from "@/redux/features/product/productApi";
+import { useCreateProjectMutation } from "@/redux/features/project/projectApi";
 import {
-  TProductFormValues,
-  createProductValidationSchema,
-} from "@/schemas/product.schema";
+  TProjectFormValues,
+  createProjectValidationSchema,
+} from "@/schemas/project.schema";
 import TextEditor from "@/components/ui/text-editor";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { ProductStatus, ProductUnit } from "@/constant/product.constant";
-import AddVariant from "@/components/forms/product/AddVariant";
-import SelectCollections from "@/components/forms/product/SelectCollections";
-import SelectCategories from "@/components/forms/product/SelectCategories";
-import SelectBrand from "@/components/forms/product/SelectBrand";
-import SelectTags from "@/components/forms/product/SelectTags";
 
-const AddProductPage = () => {
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { CalendarIcon } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+
+const AddProjectPage = () => {
   const navigate = useNavigate();
 
-  const [createProduct] = useCreateProductMutation();
+  const [createProject] = useCreateProjectMutation();
 
-  const form = useForm<TProductFormValues>({
-    resolver: zodResolver(createProductValidationSchema),
+  const form = useForm<TProjectFormValues>({
+    resolver: zodResolver(createProjectValidationSchema),
   });
 
   // on submit handler
-  const onSubmit = async (data: TProductFormValues) => {
+  const onSubmit = async (data: TProjectFormValues) => {
     console.log({ data });
 
     const toastId = toast.loading("Creating.", { duration: 2000 });
     try {
-      const response = await createProduct(data).unwrap();
+      const response = await createProject(data).unwrap();
 
       if (response.success) {
         toast.success("Created.", { id: toastId });
-        navigate("/products");
+        navigate("/projects");
         form.reset();
       }
     } catch (error) {
@@ -67,7 +64,7 @@ const AddProductPage = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <Page title="Create Product" action={<Action />}>
+        <Page title="Create Project" action={<Action />}>
           {/* form content */}
           <div className="flex gap-4">
             <div className="w-[66%] space-y-6">
@@ -81,10 +78,7 @@ const AddProductPage = () => {
                     <FormItem>
                       <FormLabel>Title</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="e.g. Fruits, Vegetables"
-                          {...field}
-                        />
+                        <Input placeholder="e.g. Blog web site." {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -110,14 +104,14 @@ const AddProductPage = () => {
               <PageSection>
                 <FormField
                   control={form.control}
-                  name="media"
+                  name="image"
                   render={({ field }) => (
                     <FormItem className="relative">
-                      <FormLabel>Media</FormLabel>
+                      <FormLabel>Image</FormLabel>
                       <UploadSingleImage
-                        fieldName="media"
+                        fieldName="image"
                         setValue={form.setValue}
-                        type="multi"
+                        type="single"
                         fieldValue={field.value || []}
                       />
                     </FormItem>
@@ -125,110 +119,44 @@ const AddProductPage = () => {
                 />
               </PageSection>
 
-              {/* Pricing */}
-              <PageSection title="Pricing">
-                <div className="flex space-x-4 mt-2">
-                  <FormField
-                    control={form.control}
-                    name="price"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-[400]">Price</FormLabel>
-                        <FormControl>
-                          <Input type="number" placeholder="0.00" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="compare_price"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-[400]">
-                          Compare price
-                        </FormLabel>
-                        <FormControl>
-                          <Input type="number" placeholder="0.00" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </PageSection>
-
-              {/* Inventory */}
-              <PageSection title="Inventory">
+              {/* links */}
+              <PageSection title="Links">
                 <FormField
                   control={form.control}
-                  name="quantity"
+                  name="liveLink"
                   render={({ field }) => (
-                    <FormItem className="w-[200px]">
-                      <FormLabel className="font-[200]">Quantity</FormLabel>
+                    <FormItem>
+                      <FormLabel>Live Link</FormLabel>
                       <FormControl>
-                        <Input type="number" placeholder="0" {...field} />
+                        <Input placeholder="e.g. www.google.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </PageSection>
-
-              {/* Shipping */}
-              <PageSection title="Shipping">
-                <div className="flex space-x-4">
-                  <FormField
-                    control={form.control}
-                    name="weight"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="font-[200]">Weight</FormLabel>
-                        <FormControl>
-                          <Input type="number" placeholder="0.0" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="unit"
-                    render={({ field }) => (
-                      <FormItem className="w-[200px]">
-                        <FormLabel className="font-[200]">Unit</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select unit" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {ProductUnit.map((item) => (
-                              <SelectItem value={item}>{item}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </PageSection>
-
-              {/* Variants */}
-              <PageSection title="Variants">
                 <FormField
                   control={form.control}
-                  name="variants"
-                  render={() => (
-                    <FormItem className="mt-2">
-                      <AddVariant form={form} />
+                  name="clientGitHub"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Github (Client)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g. www.google.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="backendGitHub"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Github(Backend)</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g. www.google.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -236,44 +164,96 @@ const AddProductPage = () => {
             </div>
             {/* right side */}
             <div className=" flex-grow space-y-6 ">
-              {/* status */}
-              <PageSection>
+              <PageSection
+                title="Title duration
+"
+              >
                 <FormField
                   control={form.control}
-                  name="status"
+                  name="startDate"
                   render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Status</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a status" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {ProductStatus.map((item) => (
-                            <SelectItem value={item}>{item}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Start Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-[240px] pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            selected={field.value as any}
+                            onSelect={field.onChange}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date("1900-01-01")
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
 
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              </PageSection>
+                <FormField
+                  control={form.control}
+                  name="endDate"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>End Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-[240px] pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            selected={field.value as any}
+                            onSelect={field.onChange}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date("1900-01-01")
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
 
-              <PageSection
-                title="Product organization
-"
-              >
-                <SelectCollections form={form} />
-                <SelectCategories form={form} />
-                <SelectBrand form={form} />
-                <SelectTags form={form} />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </PageSection>
             </div>
           </div>
@@ -287,4 +267,4 @@ const Action = () => {
   return <Button size={"sm"}>Save</Button>;
 };
 
-export default AddProductPage;
+export default AddProjectPage;

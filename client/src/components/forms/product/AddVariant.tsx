@@ -1,11 +1,11 @@
 import {
   useGetAllOptionsQuery,
   useGetAllVariantsQuery,
-} from "@/redux/features/product/productApi";
+} from "@/redux/features/project/projectApi";
 import { FC, useEffect, useState } from "react";
 
 import { UseFormReturn } from "react-hook-form";
-import { TProductFormValues } from "@/schemas/product.schema";
+import { TProductFormValues } from "@/schemas/project.schema";
 import { useAppDispatch } from "@/redux/hooks";
 import { onOpen } from "@/redux/features/modal/modalSlice";
 import CreateVariant from "./CreateVariant";

@@ -21,10 +21,10 @@ import {
 } from "@/redux/features/modal/alertModal.slice";
 import { toast } from "sonner";
 import { TProduct } from "@/types/product.type";
-import { useDeleteProductByIdMutation } from "@/redux/features/product/productApi";
+import { useDeleteProjectByIdMutation } from "@/redux/features/project/projectApi";
 
 const CategoryDataTableAction = ({ row }: { row: Row<TProduct> }) => {
-  const [deleteSingleProduct] = useDeleteProductByIdMutation();
+  const [deleteSingleProduct] = useDeleteProjectByIdMutation();
   const productId = row.original._id;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

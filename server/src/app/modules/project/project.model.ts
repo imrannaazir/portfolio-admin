@@ -14,7 +14,6 @@ const projectSchema = new Schema<TProject>(
     },
     technologies: {
       type: [String],
-      required: true,
     },
     liveLink: {
       type: String,

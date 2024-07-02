@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import LoadingButton from "../../ui/loading-button";
 import { toast } from "sonner";
 import { FC } from "react";
-import { TProductFormValues } from "@/schemas/product.schema";
+import { TProductFormValues } from "@/schemas/project.schema";
 import { useAppDispatch } from "@/redux/hooks";
 import { onClose } from "@/redux/features/modal/modalSlice";
 import { useCreateTagMutation } from "@/redux/features/tag/tagApi";

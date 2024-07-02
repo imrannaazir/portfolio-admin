@@ -31,10 +31,11 @@ const paths: TPath[] = [
       {
         path: `list`,
         label: "List",
-        element: <ProductList />,
+        element: <AddProduct />,
       },
     ],
   },
+  /* 
   {
     icon: <Briefcase className="mr-2 h-4 w-4" />,
     label: "Experiences",
@@ -85,6 +86,6 @@ const paths: TPath[] = [
         element: <ProductList />,
       },
     ],
-  },
+  }, */
 ];
 export default paths;

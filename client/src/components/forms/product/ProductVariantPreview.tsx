@@ -11,8 +11,8 @@ import {
 import {
   useGetAllOptionsQuery,
   useGetAllVariantsQuery,
-} from "@/redux/features/product/productApi";
-import { TProductFormValues } from "@/schemas/product.schema";
+} from "@/redux/features/project/projectApi";
+import { TProductFormValues } from "@/schemas/project.schema";
 import { Trash } from "lucide-react";
 import queryString from "query-string";
 import { FC } from "react";

@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import queryString from "query-string";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetAllProductQuery } from "@/redux/features/product/productApi";
+import { useGetAllProductQuery } from "@/redux/features/project/projectApi";
 import { ProductDataTable } from "@/components/dataTable/product/data-table";
 
 const ProductListPage = () => {

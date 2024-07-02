@@ -22,7 +22,7 @@ import UploadSingleImage from "@/components/ui/image-upload";
 import PageSection from "@/components/ui/page-section";
 import TextEditor from "@/components/ui/text-editor";
 import { FC } from "react";
-import { TProductFormValues } from "@/schemas/product.schema";
+import { TProductFormValues } from "@/schemas/project.schema";
 import { useAppDispatch } from "@/redux/hooks";
 import { onClose } from "@/redux/features/modal/modalSlice";
 type TAddBrandPageProps = {

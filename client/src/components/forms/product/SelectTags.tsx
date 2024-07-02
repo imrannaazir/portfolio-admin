@@ -1,7 +1,7 @@
 import OptionSelector from "@/components/ui/option-selector";
 import { onOpen } from "@/redux/features/modal/modalSlice";
 import { useAppDispatch } from "@/redux/hooks";
-import { TProductFormValues } from "@/schemas/product.schema";
+import { TProductFormValues } from "@/schemas/project.schema";
 import { FC } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { useGetAllTagQuery } from "@/redux/features/tag/tagApi";

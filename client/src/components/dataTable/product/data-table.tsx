@@ -12,12 +12,7 @@ import ProductDataTableToolbar from "../data-table-toolbar";
 import DataTableHeader from "../data-table-header";
 import { useAppDispatch } from "@/redux/hooks";
 import { DataTablePagination } from "../data-table-pagination";
-import {
-  setIsLoading,
-  setIsOpen,
-} from "@/redux/features/modal/alertModal.slice";
-import { toast } from "sonner";
-import { useDeleteBulkProductsMutation } from "@/redux/features/product/productApi";
+import { setIsLoading } from "@/redux/features/modal/alertModal.slice";
 
 interface ProductDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -31,7 +26,6 @@ export function ProductDataTable<TData, TValue>({
   isLoading,
 }: ProductDataTableProps<TData, TValue>) {
   const dispatch = useAppDispatch();
-  const [deleteManyProducts] = useDeleteBulkProductsMutation();
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
@@ -48,19 +42,7 @@ export function ProductDataTable<TData, TValue>({
   const onDelete = async (ids: string[]) => {
     dispatch(setIsLoading(true));
 
-    try {
-      const res = await deleteManyProducts({ ids }).unwrap();
-      if (res.success) {
-        toast.success("Deleted successfully.", { duration: 2000 });
-        dispatch(setIsOpen(false));
-        dispatch(setIsLoading(false));
-        setRowSelection({});
-      }
-    } catch (error) {
-      toast.error(`Failed to delete.`, { duration: 2000 });
-      dispatch(setIsOpen(false));
-      dispatch(setIsLoading(false));
-    }
+    console.log(ids);
   };
 
   const sortByItems = [

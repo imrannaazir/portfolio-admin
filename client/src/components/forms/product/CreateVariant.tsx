@@ -6,10 +6,10 @@ import { UseFormSetValue, useForm } from "react-hook-form";
 import { Button } from "../../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import LoadingButton from "../../ui/loading-button";
-import { useCrateVariantMutation } from "@/redux/features/product/productApi";
+import { useCrateVariantMutation } from "@/redux/features/project/projectApi";
 import { toast } from "sonner";
 import { FC } from "react";
-import { TProductFormValues } from "@/schemas/product.schema";
+import { TProductFormValues } from "@/schemas/project.schema";
 import { useAppDispatch } from "@/redux/hooks";
 import { onClose } from "@/redux/features/modal/modalSlice";
 
