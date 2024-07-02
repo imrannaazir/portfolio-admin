@@ -1,15 +1,10 @@
 import { Router } from 'express';
 import AuthRoutes from '../modules/auth/auth.route';
-import ProductRoutes from '../modules/product/product.route';
-import BrandRoutes from '../modules/brand/brand.route';
-import CategoryRoutes from '../modules/category/category.route';
 import TagRoutes from '../modules/tag/tag.route';
-import OrderRoute from '../modules/order/order.route';
 import IconRoutes from '../modules/icon/icon.routes';
 import ImageRoutes from '../modules/image/image.routes';
-import CollectionRoutes from '../modules/collection/collection.routes';
-import VariantRoutes, { OptionRoutes } from '../modules/variant/variant.routes';
 import ProjectRoutes from '../modules/project/project.route';
+import ExperienceRoutes from '../modules/experience/experience.routes';
 
 const router = Router();
 
@@ -27,32 +22,16 @@ const routerModules: TRouteModule[] = [
     path: '/projects',
     route: ProjectRoutes,
   },
-
   {
-    path: '/products',
-    route: ProductRoutes,
-  },
-  {
-    path: '/brands',
-    route: BrandRoutes,
-  },
-  {
-    path: '/categories',
-    route: CategoryRoutes,
-  },
-  {
-    path: '/collections',
-    route: CollectionRoutes,
+    path: '/experiences',
+    route: ExperienceRoutes,
   },
 
   {
     path: '/tags',
     route: TagRoutes,
   },
-  {
-    path: '/orders',
-    route: OrderRoute,
-  },
+
   {
     path: '/icons',
     route: IconRoutes,
@@ -60,14 +39,6 @@ const routerModules: TRouteModule[] = [
   {
     path: '/images',
     route: ImageRoutes,
-  },
-  {
-    path: '/variants',
-    route: VariantRoutes,
-  },
-  {
-    path: '/options',
-    route: OptionRoutes,
   },
 ];
 
