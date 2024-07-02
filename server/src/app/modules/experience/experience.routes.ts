@@ -14,5 +14,7 @@ router.post(
   ExperienceControllers.addNewExperience,
 );
 
+// get all experiences : GET
+router.get('/all', ExperienceControllers.getAllExperiences);
 const ExperienceRoutes = router;
 export default ExperienceRoutes;

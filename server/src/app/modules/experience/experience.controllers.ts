@@ -15,7 +15,21 @@ const addNewExperience = catchAsync(async (req, res) => {
   });
 });
 
+// get all experiences
+const getAllExperiences = catchAsync(async (req, res) => {
+  const query = req.query;
+  const result = await ExperienceServices.getAllExperience(query);
+  sendResponse(res, {
+    success: true,
+    statusCode: StatusCodes.OK,
+    message: 'Experiences retrieved successfully.',
+    meta: result.meta,
+    data: result.data,
+  });
+});
+
 const ExperienceControllers = {
+  getAllExperiences,
   addNewExperience,
 };
 
