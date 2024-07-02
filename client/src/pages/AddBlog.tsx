@@ -11,61 +11,44 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { createCategoryValidationSchema } from "@/schemas/contents.schemas";
-import { z } from "zod";
 import { toast } from "sonner";
 import {} from "@/redux/features/collection/collection.api";
 import { useNavigate } from "react-router-dom";
-import { UseFormReturn, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateCategoryMutation } from "@/redux/features/category/categoryApi";
 import UploadSingleImage from "@/components/ui/image-upload";
 import PageSection from "@/components/ui/page-section";
 import TextEditor from "@/components/ui/text-editor";
-import { TProductFormValues } from "@/schemas/product.schema";
-import { FC } from "react";
-import { useAppDispatch } from "@/redux/hooks";
-import { onClose } from "@/redux/features/modal/modalSlice";
-import SelectCategories from "@/components/forms/product/SelectCategories";
+import { useCreateBlogMutation } from "@/redux/features/blog/blogApi";
+import {
+  createBlogValidationSchema,
+  TBlogFormValues,
+} from "@/schemas/blog.schema";
 
-type TAddCategoryPageProps = {
-  isInModal?: boolean;
-  productForm?: UseFormReturn<TProductFormValues>;
-};
-
-const AddCategoryPage: FC<TAddCategoryPageProps> = ({
-  isInModal,
-  productForm,
-}) => {
+const AddBlogPage = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const [createCategory] = useCreateCategoryMutation();
+  const [createBlog] = useCreateBlogMutation();
 
-  const form = useForm<z.infer<typeof createCategoryValidationSchema>>({
-    resolver: zodResolver(createCategoryValidationSchema),
+  const form = useForm<TBlogFormValues>({
+    resolver: zodResolver(createBlogValidationSchema),
   });
 
   // on submit handler
-  const onSubmit = async (
-    data: z.infer<typeof createCategoryValidationSchema>
-  ) => {
+  const onSubmit = async (data: TBlogFormValues) => {
     const toastId = toast.loading("Creating.", { duration: 2000 });
     try {
-      const response = await createCategory(data).unwrap();
+      const { description, ...rest } = data;
+      const response = await createBlog({
+        ...rest,
+        content: description,
+      }).unwrap();
 
       if (response.success) {
         toast.success("Created.", { id: toastId });
         form.reset();
-        if (isInModal && productForm) {
-          productForm.setValue("categories", [
-            ...(productForm.watch("categories") || []),
-            response?.data?._id,
-          ]);
-          dispatch(onClose());
-        } else {
-          navigate("/contents/categories");
-        }
+
+        navigate("/blogs");
       }
     } catch (error) {
       toast.error("Failed to create.", { id: toastId });
@@ -75,11 +58,8 @@ const AddCategoryPage: FC<TAddCategoryPageProps> = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <Page title="Create Category" action={<Action />} isInModal={isInModal}>
+        <Page title="Create Blog" action={<Action />}>
           {/* form content */}
-          <div className="flex justify-end my-4">
-            <Action />
-          </div>
           <div className="flex gap-4">
             <div className="w-[66%] ">
               <PageSection>
@@ -91,31 +71,30 @@ const AddCategoryPage: FC<TAddCategoryPageProps> = ({
                     <FormItem>
                       <FormLabel>Title</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder="e.g. Packaged, Fresh Fruits"
-                          {...field}
-                        />
+                        <Input placeholder="e.g. What is MongoDB?" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                {/* collection */}
-                <SelectCategories form={form} />
                 {/* description */}
                 <FormField
                   control={form.control}
                   name="description"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <TextEditor
-                        setValue={form.setValue}
-                        value={field.value || ""}
-                      />
-                    </FormItem>
-                  )}
+                  render={({ field }) => {
+                    console.log(field.value);
+
+                    return (
+                      <FormItem>
+                        <FormLabel>Content</FormLabel>
+                        <TextEditor
+                          setValue={form.setValue}
+                          value={field.value || ""}
+                        />
+                      </FormItem>
+                    );
+                  }}
                 />
               </PageSection>{" "}
             </div>
@@ -149,4 +128,4 @@ const Action = () => {
   return <Button size={"sm"}>Save</Button>;
 };
 
-export default AddCategoryPage;
+export default AddBlogPage;

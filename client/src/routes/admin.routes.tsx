@@ -5,6 +5,8 @@ import { TPath } from "@/types";
 import AddProjectPage from "@/pages/AddProject";
 import ProjectListPage from "@/pages/ProjectList";
 import AddExperiencePage from "@/pages/AddExperiencePage";
+import ExperienceListPage from "@/pages/ExperienceListPage";
+import AddBlogPage from "@/pages/AddBlog";
 
 const paths: TPath[] = [
   {
@@ -49,12 +51,11 @@ const paths: TPath[] = [
       {
         path: `list`,
         label: "List",
-        element: <AddProjectPage />,
+        element: <ExperienceListPage />,
       },
     ],
   },
-  /* 
-          {
+  {
     icon: <BookOpen className="mr-2 h-4 w-4" />,
     label: "Blogs",
     path: "blogs",
@@ -62,15 +63,16 @@ const paths: TPath[] = [
       {
         path: `new`,
         label: "Add",
-        element: <AddProduct />,
+        element: <AddBlogPage />,
       },
       {
         path: `list`,
         label: "List",
-        element: <ProductList />,
+        element: <ProjectListPage />,
       },
     ],
   },
+  /* 
   {
     icon: <Award className="mr-2 h-4 w-4" />,
     label: "Skills",
