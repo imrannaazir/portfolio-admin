@@ -28,6 +28,18 @@ const getAllProject = catchAsync(async (req, res) => {
   });
 });
 
+// get single project by id
+const getSingleProjectById = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await ProjectService.getSingleProjectById(id);
+  sendResponse(res, {
+    success: true,
+    statusCode: StatusCodes.OK,
+    message: 'Project retrieved successfully.',
+    data: result,
+  });
+});
+
 // delete single  project
 const deleteSingleProject = catchAsync(async (req, res) => {
   const id = req.params.id;
@@ -44,6 +56,7 @@ const ProjectController = {
   createProject,
   getAllProject,
   deleteSingleProject,
+  getSingleProjectById,
 };
 
 export default ProjectController;

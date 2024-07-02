@@ -17,6 +17,9 @@ router.post(
 // get all projects
 router.get('/', ProjectController.getAllProject);
 
+// get single projects
+router.get('/:id', ProjectController.getSingleProjectById);
+
 // delete single project : DELETE
 router.delete('/:id', auth('ADMIN'), ProjectController.deleteSingleProject);
 

@@ -70,6 +70,20 @@ const getAllProject = async (
   return { data, meta };
 };
 
+// get single product by id
+const getSingleProjectById = async (id: string): Promise<TProject> => {
+  const result = await Project.findById(id);
+
+  if (!result) {
+    throw new AppError(
+      StatusCodes.NOT_FOUND,
+      'Project not founded by this ID.',
+    );
+  }
+
+  return result;
+};
+
 // delete single project
 const deleteSingleProject = async (id: string): Promise<TProject | null> => {
   // check is project exist
@@ -86,6 +100,7 @@ const ProjectService = {
   createProject,
   getAllProject,
   deleteSingleProject,
+  getSingleProjectById,
 };
 
 export default ProjectService;
