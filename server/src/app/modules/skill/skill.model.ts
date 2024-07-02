@@ -1,26 +1,21 @@
-import { DataTypes, Model } from "sequelize";
-import { TSkillAttributes } from "./skill.interface";
-import { sequelizeConnection } from "../../utils/sequelizeConnection";
+import { Schema, model, Types } from 'mongoose';
+import { TSkill } from './skill.interface';
 
-class Skill extends Model<TSkillAttributes> implements TSkillAttributes {
-  public id!: string;
-  public label!: string;
-
-  public readonly createdAt!: string;
-  public readonly updatedAt!: string;
-}
-Skill.init(
+// skill schema
+const skillSchema = new Schema<TSkill>(
   {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-      unique: true,
+    label: {
+      type: String,
+      required: true,
     },
-    label: { type: DataTypes.STRING, allowNull: false },
+    image: {
+      type: Types.ObjectId,
+      ref: 'Image', // Reference to the Image model if you have one
+    },
   },
-  { timestamps: true, sequelize: sequelizeConnection, modelName: "Skill" }
+  { timestamps: true },
 );
 
-
-export default Skill
+// model
+const Skill = model<TSkill>('Skill', skillSchema);
+export default Skill;

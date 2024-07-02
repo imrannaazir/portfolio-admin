@@ -6,6 +6,7 @@ import ImageRoutes from '../modules/image/image.routes';
 import ProjectRoutes from '../modules/project/project.route';
 import ExperienceRoutes from '../modules/experience/experience.routes';
 import BlogRoutes from '../modules/blog/blog.routes';
+import SkillRoutes from '../modules/skill/skill.route';
 
 const router = Router();
 
@@ -31,6 +32,7 @@ const routerModules: TRouteModule[] = [
     path: '/blogs',
     route: BlogRoutes,
   },
+  { path: '/skills', route: SkillRoutes },
   {
     path: '/tags',
     route: TagRoutes,
