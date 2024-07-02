@@ -52,10 +52,7 @@ const getAllProject = async (
 
   // Create a QueryBuilder instance for projects
   const projectModelQuery = new QueryBuilder(
-    Project.find(queryObj)
-      .populate('tags')
-      .populate('image')
-      .populate('createdBy'),
+    Project.find(queryObj).populate('tags').populate('image'),
     queryObj,
   )
     .search(['title', 'description']) // Add searchable fields if needed
