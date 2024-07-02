@@ -5,6 +5,7 @@ import IconRoutes from '../modules/icon/icon.routes';
 import ImageRoutes from '../modules/image/image.routes';
 import ProjectRoutes from '../modules/project/project.route';
 import ExperienceRoutes from '../modules/experience/experience.routes';
+import BlogRoutes from '../modules/blog/blog.routes';
 
 const router = Router();
 
@@ -26,7 +27,10 @@ const routerModules: TRouteModule[] = [
     path: '/experiences',
     route: ExperienceRoutes,
   },
-
+  {
+    path: '/blogs',
+    route: BlogRoutes,
+  },
   {
     path: '/tags',
     route: TagRoutes,
