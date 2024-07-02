@@ -9,6 +9,7 @@ import IconRoutes from '../modules/icon/icon.routes';
 import ImageRoutes from '../modules/image/image.routes';
 import CollectionRoutes from '../modules/collection/collection.routes';
 import VariantRoutes, { OptionRoutes } from '../modules/variant/variant.routes';
+import ProjectRoutes from '../modules/project/project.route';
 
 const router = Router();
 
@@ -22,6 +23,11 @@ const routerModules: TRouteModule[] = [
     path: '/auth',
     route: AuthRoutes,
   },
+  {
+    path: '/projects',
+    route: ProjectRoutes,
+  },
+
   {
     path: '/products',
     route: ProductRoutes,

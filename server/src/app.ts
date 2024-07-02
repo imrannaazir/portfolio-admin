@@ -12,10 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // List of allowed origins
-const allowedOrigins: string[] = [
-  'https://admin-fastmart.vercel.app',
-  'https://fast-mart.vercel.app',
-];
+const allowedOrigins: string[] = ['http://localhost:5173'];
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {

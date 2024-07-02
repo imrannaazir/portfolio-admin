@@ -75,11 +75,53 @@
   }
 }
 
-@layer {
-  .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9   px-3;
+@layer base {
+  :root {
+    --background: 116 31% 99%;
+    --foreground: 116 56% 5%;
+    --muted: 296 6% 89%;
+    --muted-foreground: 296 10% 28%;
+    --popover: 116 31% 99%;
+    --popover-foreground: 116 56% 5%;
+    --card: 116 31% 98%;
+    --card-foreground: 116 56% 4%;
+    --border: 116 6% 90%;
+    --input: 116 6% 90%;
+    --primary: 116 79% 20%;
+    --primary-foreground: 116 79% 80%;
+    --secondary: 296 79% 20%;
+    --secondary-foreground: 296 79% 80%;
+    --accent: 296 79% 20%;
+    --accent-foreground: 296 79% 80%;
+    --destructive: 21 98% 20%;
+    --destructive-foreground: 21 98% 80%;
+    --ring: 116 79% 20%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 116 47% 4%;
+    --foreground: 116 33% 100%;
+    --muted: 296 6% 11%;
+    --muted-foreground: 296 10% 72%;
+    --popover: 116 47% 4%;
+    --popover-foreground: 116 33% 100%;
+    --card: 116 47% 5%;
+    --card-foreground: 0 0% 100%;
+    --border: 116 6% 15%;
+    --input: 116 6% 15%;
+    --primary: 116 79% 20%;
+    --primary-foreground: 116 79% 80%;
+    --secondary: 296 79% 20%;
+    --secondary-foreground: 296 79% 80%;
+    --accent: 296 79% 20%;
+    --accent-foreground: 296 79% 80%;
+    --destructive: 21 98% 55%;
+    --destructive-foreground: 0 0% 0%;
+    --ring: 116 79% 20%;
   }
 }
+
 /* Hide scrollbar by default */
 .custom-scrollbar::-webkit-scrollbar {
   width: 0;
