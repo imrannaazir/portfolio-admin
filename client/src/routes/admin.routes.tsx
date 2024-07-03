@@ -7,6 +7,7 @@ import ProjectListPage from "@/pages/ProjectList";
 import AddExperiencePage from "@/pages/AddExperiencePage";
 import ExperienceListPage from "@/pages/ExperienceListPage";
 import AddBlogPage from "@/pages/AddBlog";
+import BlogListPage from "@/pages/BlogListPage";
 
 const paths: TPath[] = [
   {
@@ -68,7 +69,7 @@ const paths: TPath[] = [
       {
         path: `list`,
         label: "List",
-        element: <ProjectListPage />,
+        element: <BlogListPage />,
       },
     ],
   },

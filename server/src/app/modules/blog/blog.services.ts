@@ -25,7 +25,7 @@ const getAllBlogs = async (
   query: Record<string, unknown>,
 ): Promise<{ data: TBlog[]; meta: TMeta }> => {
   // Create a QueryBuilder instance for blog
-  const blogModelQuery = new QueryBuilder(Blog.find(), query)
+  const blogModelQuery = new QueryBuilder(Blog.find().populate('image'), query)
     .filter()
     .sort()
     .fields()

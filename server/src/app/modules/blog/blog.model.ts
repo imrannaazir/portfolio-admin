@@ -10,7 +10,7 @@ const blogSchema = new Schema<TBlog>(
     },
     image: {
       type: Types.ObjectId,
-      ref: 'Image', // Reference to the Image model if you have one
+      ref: 'image', // Reference to the Image model if you have one
     },
     content: {
       type: String,
