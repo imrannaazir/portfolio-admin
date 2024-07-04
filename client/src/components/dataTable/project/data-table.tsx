@@ -33,7 +33,7 @@ export function ProjectDataTable<TData, TValue>({
         <Table>
           <DataTableHeader table={table} fn={() => {}} />
           {isLoading ? (
-            <TableSkeleton columnNo={6} rowNo={10} />
+            <TableSkeleton columnNo={5} rowNo={10} />
           ) : (
             <TableBody>
               {table.getRowModel().rows?.length ? (

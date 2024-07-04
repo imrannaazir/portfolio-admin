@@ -13,7 +13,6 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import modalSlice from "./features/modal/modalSlice";
-import tagSlice from "./features/tag/tagSlice";
 import filterSlice from "./features/filter/filterSlice";
 import { alertModalReducer } from "./features/modal/alertModal.slice";
 
@@ -28,7 +27,6 @@ const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedAuthReducer,
     modal: modalSlice,
-    tags: tagSlice,
     filter: filterSlice,
     alertModal: alertModalReducer,
   },
