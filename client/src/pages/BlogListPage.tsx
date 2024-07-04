@@ -13,11 +13,11 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import queryString from "query-string";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetAllBlogQuery } from "@/redux/features/blog/blogApi";
-import { BlogDataTable } from "@/components/dataTable/blog/data-table";
-import { columns } from "@/components/dataTable/blog/columns";
+import { useGetAllSkillQuery } from "@/redux/features/skill/skillApi";
+import { SkillDataTable } from "@/components/dataTable/skill/data-table";
+import { columns } from "@/components/dataTable/skill/columns";
 
-const BlogListPage = () => {
+const SkillListPage = () => {
   // invoke hooks
 
   const [skip, setSkip] = useState(true);
@@ -37,7 +37,7 @@ const BlogListPage = () => {
     searchTerm,
   });
 
-  const { data, isFetching } = useGetAllBlogQuery(query, { skip });
+  const { data, isFetching } = useGetAllSkillQuery(query, { skip });
 
   useEffect(() => {
     setSkip(false);
@@ -46,14 +46,12 @@ const BlogListPage = () => {
   useEffect(() => {
     dispatch(setMeta(data?.meta));
   }, [data?.meta, dispatch]);
-  const blogs = data?.data?.data || [];
-
-  console.log(blogs);
+  const skill = data?.data?.data || [];
 
   return (
-    <Page title="Blogs" action={<ProjectAction />}>
+    <Page title="Skill" action={<ProjectAction />}>
       <div className=" mx-auto">
-        <BlogDataTable columns={columns} data={blogs} isLoading={isFetching} />
+        <SkillDataTable columns={columns} data={skill} isLoading={isFetching} />
       </div>
     </Page>
   );
@@ -61,10 +59,10 @@ const BlogListPage = () => {
 
 const ProjectAction = () => {
   return (
-    <Link to="/blogs/new">
-      <Button size={"sm"}>Add Blog</Button>;
+    <Link to="/skills/new">
+      <Button size={"sm"}>Add Skill</Button>;
     </Link>
   );
 };
 
-export default BlogListPage;
+export default SkillListPage;

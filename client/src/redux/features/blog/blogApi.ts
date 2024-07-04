@@ -19,7 +19,7 @@ export const blogApi = baseApi.injectEndpoints({
         url: `/blogs/all`,
         method: "GET",
       }),
-      providesTags: ["Blog", "Blog"],
+      providesTags: ["Blog", "Blogs"],
     }),
   }),
 });

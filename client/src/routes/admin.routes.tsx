@@ -8,6 +8,8 @@ import AddExperiencePage from "@/pages/AddExperiencePage";
 import ExperienceListPage from "@/pages/ExperienceListPage";
 import AddBlogPage from "@/pages/AddBlog";
 import BlogListPage from "@/pages/BlogListPage";
+import AddSkillPage from "@/pages/AddSkillPage";
+import SkillListPage from "@/pages/BlogListPage";
 
 const paths: TPath[] = [
   {
@@ -73,7 +75,6 @@ const paths: TPath[] = [
       },
     ],
   },
-  /* 
   {
     icon: <Award className="mr-2 h-4 w-4" />,
     label: "Skills",
@@ -82,14 +83,14 @@ const paths: TPath[] = [
       {
         path: `new`,
         label: "Add",
-        element: <AddProduct />,
+        element: <AddSkillPage />,
       },
       {
         path: `list`,
         label: "List",
-        element: <ProductList />,
+        element: <SkillListPage />,
       },
     ],
-  }, */
+  },
 ];
 export default paths;
