@@ -12,7 +12,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 // List of allowed origins
-const allowedOrigins: string[] = ['http://localhost:5173'];
+const allowedOrigins: string[] = [
+  'http://localhost:5173',
+  'https://admin-imrannaaziremon.vercel.app',
+];
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
