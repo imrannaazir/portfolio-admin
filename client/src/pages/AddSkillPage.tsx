@@ -43,7 +43,7 @@ const AddSkillPage = () => {
         toast.success("Created.", { id: toastId });
         form.reset();
 
-        navigate("/skills");
+        navigate("/skills/list");
       }
     } catch (error) {
       toast.error("Failed to create.", { id: toastId });

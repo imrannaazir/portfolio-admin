@@ -51,7 +51,7 @@ const AddProjectPage = () => {
 
       if (response.success) {
         toast.success("Created.", { id: toastId });
-        navigate("/projects");
+        navigate("/projects/list");
         form.reset();
       }
     } catch (error) {

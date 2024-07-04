@@ -48,7 +48,7 @@ const AddBlogPage = () => {
         toast.success("Created.", { id: toastId });
         form.reset();
 
-        navigate("/blogs");
+        navigate("/blogs/list");
       }
     } catch (error) {
       toast.error("Failed to create.", { id: toastId });

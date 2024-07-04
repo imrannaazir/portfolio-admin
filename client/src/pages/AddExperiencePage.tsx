@@ -50,7 +50,7 @@ const AddExperiencePage = () => {
 
       if (response.success) {
         toast.success("Created.", { id: toastId });
-        navigate("/experiences");
+        navigate("/experiences/list");
         form.reset();
       }
     } catch (error) {

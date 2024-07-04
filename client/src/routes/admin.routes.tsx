@@ -9,7 +9,7 @@ import ExperienceListPage from "@/pages/ExperienceListPage";
 import AddBlogPage from "@/pages/AddBlog";
 import BlogListPage from "@/pages/BlogListPage";
 import AddSkillPage from "@/pages/AddSkillPage";
-import SkillListPage from "@/pages/BlogListPage";
+import SkillListPage from "@/pages/SkillListPage";
 
 const paths: TPath[] = [
   {

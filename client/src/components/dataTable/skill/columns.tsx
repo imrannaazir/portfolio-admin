@@ -5,9 +5,9 @@ import moment from "moment";
 export const columns: ColumnDef<TSkill>[] = [
   // Title column
   {
-    header: "Title",
+    header: "Label",
     cell: ({ row }) => {
-      const title = row.original.title;
+      const title = row.original.label;
       // const format = row?.original?.image?.url;
       const imageUrl =
         row.original?.image?.url ||
