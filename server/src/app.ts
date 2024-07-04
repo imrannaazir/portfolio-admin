@@ -13,7 +13,7 @@ app.use(cookieParser());
 
 // List of allowed origins
 const allowedOrigins: string[] = [
-  'http://localhost:5173',
+  'https://imrannaaziremon.vercel.app',
   'https://admin-imrannaaziremon.vercel.app',
 ];
 
