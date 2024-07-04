@@ -32,7 +32,7 @@ router.get('/', ImageControllers.getAllImages);
 // delete many images : DELETE
 router.delete(
   '/',
-  auth('SUPER_ADMIN', 'ADMIN'),
+  auth('ADMIN'),
   validateRequest(deleteManyValidationSchema),
   ImageControllers.deleteManyImages,
 );

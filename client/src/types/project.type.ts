@@ -1,7 +1,4 @@
-import { ProductStatus, ProductUnit } from "@/constant/product.constant";
-import { TBrand, TCategory, TCollection, TImage } from "./contents.type";
-export type TProductStatus = (typeof ProductStatus)[number];
-export type TProductUnit = (typeof ProductUnit)[number];
+import { TImage } from "./contents.type";
 export type TTag = {
   _id?: string;
   name: string;
@@ -29,30 +26,6 @@ export type TOption = {
   option_name: string;
   variantId?: string;
   __v?: number;
-};
-
-export type TProduct = {
-  _id?: string;
-
-  title: string;
-  price: number;
-
-  compare_price?: number;
-  description?: string;
-  status: TProductStatus;
-  quantity?: number;
-  weight?: number;
-  unit: TProductUnit;
-
-  media?: TImage[];
-  variants?: TProductVariant[];
-  categories?: TCategory[];
-  collections?: TCollection[];
-  brand?: TBrand;
-  tags?: TTag[];
-  createdBy?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 };
 
 export type TProject = {

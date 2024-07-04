@@ -10,7 +10,7 @@ const imageApi = baseApi.injectEndpoints({
         url: `/images?${args}`,
         method: "GET",
       }),
-      providesTags: ["Images"],
+      providesTags: [],
       transformResponse: (response: TResponseRedux<TImage>) => ({
         data: response.data,
         meta: response.meta,
@@ -27,7 +27,7 @@ const imageApi = baseApi.injectEndpoints({
         };
       },
 
-      invalidatesTags: ["Images"],
+      invalidatesTags: [],
     }),
 
     // delete images
@@ -37,7 +37,7 @@ const imageApi = baseApi.injectEndpoints({
         method: "DELETE",
         body: data,
       }),
-      invalidatesTags: ["Images"],
+      invalidatesTags: [],
     }),
   }),
 });

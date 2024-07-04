@@ -49,7 +49,7 @@ const ExperienceListPage = () => {
   const experiences = data?.data || [];
 
   return (
-    <Page title="Projects" action={<ProjectAction />}>
+    <Page title="Experiences" action={<ExperiencesAction />}>
       <div className=" mx-auto">
         <ExperienceDataTable
           columns={columns}
@@ -61,10 +61,10 @@ const ExperienceListPage = () => {
   );
 };
 
-const ProjectAction = () => {
+const ExperiencesAction = () => {
   return (
-    <Link to="/projects/new">
-      <Button size={"sm"}>Add Project</Button>;
+    <Link to="/experiences/new">
+      <Button size={"sm"}>Add Experiences</Button>;
     </Link>
   );
 };

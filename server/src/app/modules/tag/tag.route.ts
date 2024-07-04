@@ -9,7 +9,7 @@ const router = Router();
 // create Tag : POST
 router.post(
   '/',
-  auth('SUPER_ADMIN', 'ADMIN'),
+  auth('ADMIN'),
   validateRequest(createTagValidationSchema),
   TagController.createTag,
 );
