@@ -42,7 +42,7 @@ const getAllBlogs = async (
 
 // get single blog by id
 const getSingleBlogById = async (id: string): Promise<TBlog> => {
-  const result = await Blog.findById(id);
+  const result = await Blog.findById(id).populate('image');
 
   if (!result) {
     throw new AppError(StatusCodes.NOT_FOUND, 'Blog not founded by this ID.');

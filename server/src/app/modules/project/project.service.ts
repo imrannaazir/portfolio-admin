@@ -72,7 +72,7 @@ const getAllProject = async (
 
 // get single product by id
 const getSingleProjectById = async (id: string): Promise<TProject> => {
-  const result = await Project.findById(id);
+  const result = await Project.findById(id).populate('image');
 
   if (!result) {
     throw new AppError(
