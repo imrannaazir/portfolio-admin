@@ -15,7 +15,7 @@ const createSingleSkill = async (payload: TSkill) => {
 
 // Get all skills
 const getAllSkills = async () => {
-  const skills = await Skill.find().exec();
+  const skills = await Skill.find().populate('image').exec();
   return skills;
 };
 
