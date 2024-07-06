@@ -10,7 +10,7 @@ const skillSchema = new Schema<TSkill>(
     },
     image: {
       type: Types.ObjectId,
-      ref: 'Image', // Reference to the Image model if you have one
+      ref: 'image', // Reference to the Image model if you have one
     },
   },
   { timestamps: true },
