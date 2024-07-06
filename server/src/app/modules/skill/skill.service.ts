@@ -1,3 +1,4 @@
+import QueryBuilder from '../../builder/QueryBuilder';
 import { TSkill } from './skill.interface';
 import Skill from './skill.model';
 
@@ -14,9 +15,21 @@ const createSingleSkill = async (payload: TSkill) => {
 };
 
 // Get all skills
-const getAllSkills = async () => {
-  const skills = await Skill.find().populate('image').exec();
-  return skills;
+const getAllSkills = async (query: Record<string, unknown>) => {
+  // Create a QueryBuilder instance for skill
+  const skillModelQuery = new QueryBuilder(
+    Skill.find(query).populate('image'),
+    query,
+  )
+    .filter()
+    .sort()
+    .fields()
+    .paginate();
+
+  // Execute the query to get the data
+  const data = await skillModelQuery.modelQuery;
+
+  return data;
 };
 
 const SkillServices = {
